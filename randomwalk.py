@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jul  4 23:09:19 2019
-
-@author: aggel
+@author: Konstantinos Angelou
 """
 
 import random
+import sys
 
 class RandomWalker():
     '''This is a random walker simulator'''
@@ -29,14 +28,19 @@ class RandomWalker():
         r2 = self.x*self.x + self.y*self.y
         return r2
 
+def rwInput():
+    return int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3])
 
 def main():
-    steps, runs = 1000, 10000
+    steps, runs, mseed = rwInput()
     mysum = 0
     for run in range(runs):
-        rwalker = RandomWalker(0,0,run*2)
+        # Create a random walker
+        rwalker = RandomWalker(0, 0, (1+mseed)*run)
         for step in range(steps):
+            # Move the random walker
             rwalker.move()
+        # Calculate R^2 = x^2 + y^2
         r2 = rwalker.calculateR2()
         mysum += r2
             
