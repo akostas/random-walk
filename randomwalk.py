@@ -9,10 +9,10 @@ import random
 
 class RandomWalker():
     '''This is a random walker simulator'''
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=0, y=0, mseed=0):
         self.x = 0
         self.y = 0
-        #random.seed(myseed)
+        random.seed(mseed)
     
     def move(self):
         tmp = random.random()
@@ -31,11 +31,10 @@ class RandomWalker():
 
 
 def main():
-    #random.seed(1234)
     steps, runs = 1000, 10000
     mysum = 0
     for run in range(runs):
-        rwalker = RandomWalker(0,0)
+        rwalker = RandomWalker(0,0,run*2)
         for step in range(steps):
             rwalker.move()
         r2 = rwalker.calculateR2()
